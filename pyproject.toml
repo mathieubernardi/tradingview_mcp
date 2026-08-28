@@ -13,7 +13,9 @@ requires-python = ">=3.11"
 license = "MIT"
 license-files = ["LICENSE"]
 dependencies = [
-    "mcp[cli]>=1.0.0",
+    # <2.0.0 : le SDK 2.x supprime les decorateurs @server.list_tools() /
+    # @server.call_tool() utilises dans server.py et renomme Tool.inputSchema.
+    "mcp[cli]>=1.0.0,<2.0.0",
     "tvdatafeed @ git+https://github.com/rongardF/tvdatafeed.git",
     "tradingview-ta>=3.3.0",  # screener (TA_Handler) — importé dans client.get_screener
     "pandas>=2.0.0",

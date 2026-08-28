@@ -69,6 +69,9 @@ Client MCP (Claude Desktop, claude.ai…)
 - Python ≥ 3.11
 - Un compte TradingView est optionnel — l'accès anonyme fonctionne, avec des
   limites de débit plus strictes.
+- Le SDK MCP est épinglé en `< 2.0.0` : la version 2.x supprime les décorateurs
+  `@server.list_tools()` / `@server.call_tool()` et renomme `Tool.inputSchema`
+  en `Tool.input_schema`. Une migration est nécessaire avant de lever ce plafond.
 
 ## Installation
 
