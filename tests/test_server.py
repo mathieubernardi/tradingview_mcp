@@ -8,7 +8,7 @@ from unittest.mock import MagicMock
 import pandas as pd
 import pytest
 
-from mcp_tradingview.client import TTLCache, TradingViewClient
+from mcp_tradingview.client import TradingViewClient, TTLCache
 from mcp_tradingview.models import (
     GetHistoricalDataInput,
     GetIndicatorsInput,
@@ -19,7 +19,6 @@ from mcp_tradingview.models import (
     QuoteResult,
 )
 from mcp_tradingview.tools import build_tools, handle_tool_call
-
 
 # ─────────────────────────────────────────────
 # Fixtures

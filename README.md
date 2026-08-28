@@ -203,5 +203,10 @@ tradingview_mcp/
 ├── pyproject.toml
 ├── .env.example
 ├── .gitignore
+├── LICENSE
 └── README.md
 ```
+
+## Licence
+
+Distribué sous licence MIT. Voir le fichier [LICENSE](LICENSE).

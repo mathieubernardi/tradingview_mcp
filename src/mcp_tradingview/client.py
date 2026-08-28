@@ -503,7 +503,9 @@ class TradingViewClient:
                 def _perf(src: pd.DataFrame, bars: int) -> float | None:
                     if len(src) < bars + 1:
                         return None
-                    return (float(src["close"].iloc[-1]) / float(src["close"].iloc[-(bars + 1)]) - 1) * 100
+                    last = float(src["close"].iloc[-1])
+                    past = float(src["close"].iloc[-(bars + 1)])
+                    return (last / past - 1) * 100
 
                 sym_1m = _perf(df, 21)
                 sym_3m = _perf(df, 63)
@@ -623,8 +625,10 @@ class TradingViewClient:
         For a real screener, consider tradingview-ta or a paid API.
         """
         from tradingview_ta import (
-            TA_Handler,
             Interval as TaInterval,
+        )
+        from tradingview_ta import (
+            TA_Handler,
         )
 
         symbols = MARKET_SYMBOLS.get(params.market, [])

@@ -7,7 +7,6 @@ from typing import Any
 
 from pydantic import BaseModel, Field, field_validator
 
-
 # ─────────────────────────────────────────────
 # Enums
 # ─────────────────────────────────────────────
@@ -119,10 +118,16 @@ class GetIndicatorsInput(BaseModel):
     # Divergence detection window (bars)
     divergence_lookback: int = Field(default=20, ge=10, le=50)
     # Relative strength vs benchmark (empty string = skip, extra API call)
-    benchmark_symbol: str = Field(default="", description="Benchmark ticker for RS (e.g. 'CW8'). Empty = skip.")
+    benchmark_symbol: str = Field(
+        default="",
+        description="Benchmark ticker for RS (e.g. 'CW8'). Empty = skip.",
+    )
     benchmark_exchange: str = Field(default="EURONEXT")
     # Weekly context (requires extra API call)
-    include_weekly: bool = Field(default=False, description="Fetch weekly bars for multi-timeframe context")
+    include_weekly: bool = Field(
+        default=False,
+        description="Fetch weekly bars for multi-timeframe context",
+    )
     # Composite technical score [-1, +1]
     include_score: bool = Field(default=False, description="Compute composite technical score")
 
