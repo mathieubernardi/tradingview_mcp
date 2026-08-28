@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project]
+name = "mcp-tradingview"
+version = "0.1.0"
+description = "MCP Server for TradingView data (prices, indicators, screener)"
+requires-python = ">=3.11"
+dependencies = [
+    "mcp[cli]>=1.0.0",
+    "tvdatafeed @ git+https://github.com/rongardF/tvdatafeed.git",
+    "tradingview-ta>=3.3.0",  # screener (TA_Handler) — importé dans client.get_screener
+    "pandas>=2.0.0",
+    "pandas-ta-classic",  # fork communautaire compatible Python 3.11 (même API que pandas-ta)
+    "httpx>=0.27.0",
+    "pydantic>=2.0.0",
+    "pydantic-settings>=2.0.0",
+    "uvicorn>=0.29.0",
+    "starlette>=0.37.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.scripts]
+mcp-tradingview = "mcp_tradingview.server:main"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "ruff>=0.4",
+    "mypy>=1.10",
+    "pandas-stubs",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
